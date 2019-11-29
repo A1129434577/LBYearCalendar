@@ -114,8 +114,8 @@
 		40923FC22391042D006769D6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				40923FC32391042D006769D6 /* LBCalenderConfig.m */,
 				40923FC42391042D006769D6 /* LBCalenderConfig.h */,
+				40923FC32391042D006769D6 /* LBCalenderConfig.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";

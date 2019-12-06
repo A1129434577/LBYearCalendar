@@ -76,8 +76,12 @@
         __weak typeof(self) weakSelf = self;
         [[LBCalenderConfig shareInstanse].selectionDates enumerateObjectsUsingBlock:^(NSDate * _Nonnull selectionDate, NSUInteger idx, BOOL * _Nonnull stop) {
             selectionDate = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:selectionDate options:0];
-            NSDate *selfDate = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:weakSelf.date options:0];
-            if ([selectionDate isEqualToDate:selfDate]) {
+            if (weakSelf.date) {
+                weakSelf.date = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:weakSelf.date options:0];
+            }
+            
+            
+            if ([selectionDate isEqualToDate:weakSelf.date]) {
                 weakSelf.selectionLayer.hidden = NO;
                 weakSelf.dayTitleLayer.foregroundColor = [LBCalenderConfig shareInstanse].daySelectionColor.CGColor;
                 *stop = YES;
@@ -91,9 +95,10 @@
         __weak typeof(self) weakSelf = self;
         [[LBCalenderConfig shareInstanse].eventsDates enumerateObjectsUsingBlock:^(NSDate * _Nonnull eventsDate, NSUInteger idx, BOOL * _Nonnull stop) {
             eventsDate = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:eventsDate options:0];
-            NSDate *selfDate = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:weakSelf.date options:0];
-            
-            if ([eventsDate isEqualToDate:selfDate]) {
+            if (weakSelf.date) {
+                weakSelf.date = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:weakSelf.date options:0];
+            }
+            if ([eventsDate isEqualToDate:weakSelf.date]) {
                 weakSelf.eventIndicator.hidden = NO;
                 *stop = YES;
             }

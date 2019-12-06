@@ -13,21 +13,19 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class LBYearCalendarView;
-
 @protocol LBYearCalendarDelegate <UIScrollViewDelegate>
 @optional
 -(void)calendarView:(LBYearCalendarView *)yearCalendarView didSelectDate:(NSDate *)date;
 @end
 
-@interface LBYearCalendarView : UIView
+@interface LBYearCalendarView : UICollectionView
 
-@property (nonatomic,weak,readonly)id<LBYearCalendarDelegate> lb_delegate;
-@property (nonatomic,strong,readonly)UICollectionView *calenderYearCollectionView;
+@property (nonatomic,weak)id<LBYearCalendarDelegate> lb_delegate;
+
 @property (nonatomic,strong)NSDate *startYear;
 @property (nonatomic,strong)NSDate *endYear;
 
--(instancetype)initWithFrame:(CGRect)frame delegate:(nonnull id<LBYearCalendarDelegate >)delegate;
-
+@property (nonatomic,strong)NSDate *currentPage;
 @end
 
 NS_ASSUME_NONNULL_END

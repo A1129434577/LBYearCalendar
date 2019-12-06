@@ -14,7 +14,7 @@
 		40923FB5239103E1006769D6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FB4239103E1006769D6 /* AppDelegate.m */; };
 		40923FB7239103E9006769D6 /* LBYearCalendar.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 40923FB6239103E9006769D6 /* LBYearCalendar.podspec */; };
 		40923FC52391042D006769D6 /* LBYearCalendarDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FBB2391042D006769D6 /* LBYearCalendarDayCell.m */; };
-		40923FC62391042D006769D6 /* LBYearCalenderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FBF2391042D006769D6 /* LBYearCalenderCell.m */; };
+		40923FC62391042D006769D6 /* LBOneYearCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FBF2391042D006769D6 /* LBOneYearCollectionView.m */; };
 		40923FC72391042D006769D6 /* LBYearCalenderMonthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FC02391042D006769D6 /* LBYearCalenderMonthCell.m */; };
 		40923FC82391042D006769D6 /* LBYearCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FC12391042D006769D6 /* LBYearCalendarView.m */; };
 		40923FC92391042D006769D6 /* LBCalenderConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FC32391042D006769D6 /* LBCalenderConfig.m */; };
@@ -34,9 +34,9 @@
 		40923FB92391042D006769D6 /* LBYearCalendarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYearCalendarView.h; sourceTree = "<group>"; };
 		40923FBB2391042D006769D6 /* LBYearCalendarDayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBYearCalendarDayCell.m; sourceTree = "<group>"; };
 		40923FBC2391042D006769D6 /* LBYearCalenderMonthCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYearCalenderMonthCell.h; sourceTree = "<group>"; };
-		40923FBD2391042D006769D6 /* LBYearCalenderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYearCalenderCell.h; sourceTree = "<group>"; };
+		40923FBD2391042D006769D6 /* LBOneYearCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBOneYearCollectionView.h; sourceTree = "<group>"; };
 		40923FBE2391042D006769D6 /* LBYearCalendarDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBYearCalendarDayCell.h; sourceTree = "<group>"; };
-		40923FBF2391042D006769D6 /* LBYearCalenderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBYearCalenderCell.m; sourceTree = "<group>"; };
+		40923FBF2391042D006769D6 /* LBOneYearCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBOneYearCollectionView.m; sourceTree = "<group>"; };
 		40923FC02391042D006769D6 /* LBYearCalenderMonthCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBYearCalenderMonthCell.m; sourceTree = "<group>"; };
 		40923FC12391042D006769D6 /* LBYearCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBYearCalendarView.m; sourceTree = "<group>"; };
 		40923FC32391042D006769D6 /* LBCalenderConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBCalenderConfig.m; sourceTree = "<group>"; };
@@ -54,6 +54,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4016734B239AC7FC00185FB8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40923FBD2391042D006769D6 /* LBOneYearCollectionView.h */,
+				40923FBF2391042D006769D6 /* LBOneYearCollectionView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		40923F8E239101A7006769D6 = {
 			isa = PBXGroup;
 			children = (
@@ -90,10 +99,11 @@
 		40923FB82391042D006769D6 /* LBYearCalendar */ = {
 			isa = PBXGroup;
 			children = (
-				40923FC22391042D006769D6 /* Model */,
-				40923FBA2391042D006769D6 /* Cells */,
 				40923FB92391042D006769D6 /* LBYearCalendarView.h */,
 				40923FC12391042D006769D6 /* LBYearCalendarView.m */,
+				40923FC22391042D006769D6 /* Model */,
+				40923FBA2391042D006769D6 /* Cells */,
+				4016734B239AC7FC00185FB8 /* Views */,
 			);
 			path = LBYearCalendar;
 			sourceTree = SOURCE_ROOT;
@@ -101,8 +111,6 @@
 		40923FBA2391042D006769D6 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				40923FBD2391042D006769D6 /* LBYearCalenderCell.h */,
-				40923FBF2391042D006769D6 /* LBYearCalenderCell.m */,
 				40923FBC2391042D006769D6 /* LBYearCalenderMonthCell.h */,
 				40923FC02391042D006769D6 /* LBYearCalenderMonthCell.m */,
 				40923FBE2391042D006769D6 /* LBYearCalendarDayCell.h */,
@@ -192,7 +200,7 @@
 			files = (
 				40923FA2239101A7006769D6 /* ViewController.m in Sources */,
 				40923FC72391042D006769D6 /* LBYearCalenderMonthCell.m in Sources */,
-				40923FC62391042D006769D6 /* LBYearCalenderCell.m in Sources */,
+				40923FC62391042D006769D6 /* LBOneYearCollectionView.m in Sources */,
 				40923FC52391042D006769D6 /* LBYearCalendarDayCell.m in Sources */,
 				40923FAD239101A9006769D6 /* main.m in Sources */,
 				40923FB5239103E1006769D6 /* AppDelegate.m in Sources */,

@@ -63,7 +63,6 @@
     NSString *identifir = NSStringFromClass(LBYearCalendarDayCell.self);
     LBYearCalendarDayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifir forIndexPath:indexPath];
     
-    
     NSUInteger weekDay = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:_month];
     NSUInteger startIndex = weekDay-1;
     if (indexPath.row >= startIndex) {
@@ -86,7 +85,7 @@
     NSDateFormatter *yearMonthFormatter = [[NSDateFormatter alloc] init];
     yearMonthFormatter.dateFormat = @"yyyyMM";
     
-    if ([month compare:[yearMonthFormatter dateFromString:[yearMonthFormatter stringFromDate:[NSDate date]]]] == NSOrderedSame) {
+    if ([[yearMonthFormatter stringFromDate:month] isEqualToString:[yearMonthFormatter stringFromDate:[NSDate date]]]) {
         _monthTitleLabel.textColor = [LBCalenderConfig shareInstanse].currentMonthColor;
     }else{
         _monthTitleLabel.textColor = [LBCalenderConfig shareInstanse].monthColor;

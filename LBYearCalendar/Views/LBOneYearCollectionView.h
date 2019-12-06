@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LBYearCalenderCell : UICollectionViewCell
+@interface LBOneYearCollectionView : UICollectionView
 @property (nonatomic,strong)NSDate *year;
 @end
 

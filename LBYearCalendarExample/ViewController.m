@@ -10,20 +10,11 @@
 #import "LBYearCalendarView.h"
 
 @interface ViewController ()<LBYearCalendarDelegate>
-@property (nonatomic,strong)NSDateFormatter *yearDateFormatter;
 
 @end
 
 @implementation ViewController
-- (instancetype)init
-{
-    self = [super init];
-    if (self) {
-        _yearDateFormatter = [[NSDateFormatter alloc] init];
-        _yearDateFormatter.dateFormat = @"yyyy";
-    }
-    return self;
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,12 +24,11 @@
     [LBCalenderConfig shareInstanse].selectionDates = @[[NSDate date]];
     [LBCalenderConfig shareInstanse].eventsDates = @[[[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:[NSDate date] options:0],[[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:[NSDate date] options:0]];
     
-    LBYearCalendarView *yearCalendarView = [[LBYearCalendarView alloc] initWithFrame:self.view.bounds delegate:self];
+    LBYearCalendarView *yearCalendarView = [[LBYearCalendarView alloc] initWithFrame:self.view.bounds];
+    yearCalendarView.lb_delegate = self;
+    yearCalendarView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:yearCalendarView];
     
-    
-    yearCalendarView.calenderYearCollectionView.contentOffset = CGPointMake(([_yearDateFormatter stringFromDate:[NSDate date]].intValue-[_yearDateFormatter stringFromDate:yearCalendarView.startYear].intValue)*CGRectGetWidth(yearCalendarView.calenderYearCollectionView.frame), 0);
-
 }
 
 #pragma mark LBYearCalendarDelegate
@@ -48,4 +38,5 @@
     [selectionDates addObject:date];
     [LBCalenderConfig shareInstanse].selectionDates = selectionDates;
 }
+
 @end

@@ -14,14 +14,13 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shareData = [[LBCalenderConfig alloc] init];
-        shareData.calendar = [NSCalendar currentCalendar];
-        shareData.calendar.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
         shareData.selectionDates = @[[NSDate date]];
         
         shareData.monthFont = [UIFont systemFontOfSize:20];
         shareData.dayFont = [UIFont systemFontOfSize:10];
         
         shareData.monthColor = [UIColor blackColor];
+        shareData.currentMonthColor = [UIColor magentaColor];
         shareData.dayColor = [UIColor blackColor];
         shareData.daySelectionColor = [UIColor whiteColor];
         shareData.selectionColor = [UIColor magentaColor];

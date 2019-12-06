@@ -10,7 +10,6 @@
 #import "LBYearCalenderCell.h"
 
 @interface LBYearCalendarView ()<UICollectionViewDataSource,UICollectionViewDelegate,UIScrollViewDelegate>
-@property (nonatomic,strong)NSDateFormatter *yearDateFormatter;
 @end
 
 @implementation LBYearCalendarView
@@ -20,13 +19,8 @@
     if (self) {
         _lb_delegate = delegate;
         
-        
-        _yearDateFormatter = [[NSDateFormatter alloc] init];
-        _yearDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-        _yearDateFormatter.dateFormat = @"yyyy";
-        
-        _startYear = [_yearDateFormatter dateFromString:@"1970"];
-        _endYear = [_yearDateFormatter dateFromString:@"3030"];
+        _startYear = [NSDate dateWithTimeIntervalSince1970:0];
+        _endYear = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitYear value:1500 toDate:[NSDate date] options:0];
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
@@ -57,7 +51,7 @@
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSUInteger years = [[LBCalenderConfig shareInstanse].calendar components:NSCalendarUnitYear fromDate:_startYear toDate:_endYear options:0].year+1;
+    NSUInteger years = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:_startYear toDate:_endYear options:0].year+1;
     return years;
 }
 
@@ -66,7 +60,7 @@
     NSString *identifir = NSStringFromClass(LBYearCalenderCell.self);
     LBYearCalenderCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifir forIndexPath:indexPath];
     
-    cell.year = [[LBCalenderConfig shareInstanse].calendar dateByAddingUnit:NSCalendarUnitYear value:indexPath.row toDate:_startYear options:0];
+    cell.year = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitYear value:indexPath.row toDate:_startYear options:0];
     return cell;
 }
 

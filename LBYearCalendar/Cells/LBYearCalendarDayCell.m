@@ -12,8 +12,6 @@
 @interface LBYearCalendarDayCell ()
 @property (nonatomic,strong)CATextLayer *dayTitleLayer;
 @property (nonatomic,strong)NSDateFormatter *dayFromatter;
-@property (nonatomic,strong)NSDateFormatter *dateFromatter;
-@property (nonatomic,strong)NSString *dateString;//yyyyMMdd
 @end
 
 @implementation LBYearCalendarDayCell
@@ -23,11 +21,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         _dayFromatter = [[NSDateFormatter alloc] init];
-        _dayFromatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-        _dayFromatter.dateFormat = @"dd";
-        
-        _dateFromatter = [[NSDateFormatter alloc] init];
-        _dateFromatter.dateFormat = @"yyyyMMdd";
+        _dayFromatter.dateFormat = @"d";
         
         _selectionLayer = [[CAShapeLayer alloc] init];
         _selectionLayer.hidden = YES;
@@ -52,21 +46,25 @@
         _eventIndicator.path = [UIBezierPath bezierPathWithRect:_eventIndicator.bounds].CGPath;
         [self.layer addSublayer:_eventIndicator];
         
-        
         [[LBCalenderConfig shareInstanse] addObserver:self forKeyPath:NSStringFromSelector(@selector(selectionDates)) options:NSKeyValueObservingOptionNew context:nil];
         [[LBCalenderConfig shareInstanse] addObserver:self forKeyPath:NSStringFromSelector(@selector(eventsDates)) options:NSKeyValueObservingOptionNew context:nil];
     }
     return self;
 }
 -(void)setDate:(NSDate *)date{
-    if (_date != date) {
+    if (![_date isEqualToDate:date]) {
         _date = date;
-        _dayTitleLayer.string = [_dayFromatter stringFromDate:date];
-        
-        _dateString = [_dateFromatter stringFromDate:date];
-        
-        [self observeValueForKeyPath:NSStringFromSelector(@selector(selectionDates)) ofObject:[LBCalenderConfig shareInstanse] change:nil context:nil];
-        [self observeValueForKeyPath:NSStringFromSelector(@selector(eventsDates)) ofObject:[LBCalenderConfig shareInstanse] change:nil context:nil];
+        if (date) {
+            _dayTitleLayer.hidden = NO;
+            _dayTitleLayer.string = [_dayFromatter stringFromDate:date];
+            
+            [self observeValueForKeyPath:NSStringFromSelector(@selector(selectionDates)) ofObject:[LBCalenderConfig shareInstanse] change:nil context:nil];
+            [self observeValueForKeyPath:NSStringFromSelector(@selector(eventsDates)) ofObject:[LBCalenderConfig shareInstanse] change:nil context:nil];
+        }else{
+            _dayTitleLayer.hidden = YES;
+            _selectionLayer.hidden = YES;
+            _eventIndicator.hidden = YES;
+        }
     }
 }
 
@@ -77,8 +75,9 @@
         
         __weak typeof(self) weakSelf = self;
         [[LBCalenderConfig shareInstanse].selectionDates enumerateObjectsUsingBlock:^(NSDate * _Nonnull selectionDate, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *selectionDateString = [weakSelf.dateFromatter stringFromDate:selectionDate];
-            if ([selectionDateString isEqualToString:weakSelf.dateString]) {
+            selectionDate = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:selectionDate options:0];
+            NSDate *selfDate = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:weakSelf.date options:0];
+            if ([selectionDate isEqualToDate:selfDate]) {
                 weakSelf.selectionLayer.hidden = NO;
                 weakSelf.dayTitleLayer.foregroundColor = [LBCalenderConfig shareInstanse].daySelectionColor.CGColor;
                 *stop = YES;
@@ -91,8 +90,10 @@
         
         __weak typeof(self) weakSelf = self;
         [[LBCalenderConfig shareInstanse].eventsDates enumerateObjectsUsingBlock:^(NSDate * _Nonnull eventsDate, NSUInteger idx, BOOL * _Nonnull stop) {
-            NSString *eventsDateString = [weakSelf.dateFromatter stringFromDate:eventsDate];
-            if ([eventsDateString isEqualToString:weakSelf.dateString]) {
+            eventsDate = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:eventsDate options:0];
+            NSDate *selfDate = [[NSCalendar currentCalendar] dateBySettingHour:0 minute:0 second:0 ofDate:weakSelf.date options:0];
+            
+            if ([eventsDate isEqualToDate:selfDate]) {
                 weakSelf.eventIndicator.hidden = NO;
                 *stop = YES;
             }

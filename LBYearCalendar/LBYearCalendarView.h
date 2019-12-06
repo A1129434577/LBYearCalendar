@@ -21,14 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LBYearCalendarView : UIView
 
-
-
 @property (nonatomic,weak,readonly)id<LBYearCalendarDelegate> lb_delegate;
 @property (nonatomic,strong,readonly)UICollectionView *calenderYearCollectionView;
 @property (nonatomic,strong)NSDate *startYear;
 @property (nonatomic,strong)NSDate *endYear;
-
-
 
 -(instancetype)initWithFrame:(CGRect)frame delegate:(nonnull id<LBYearCalendarDelegate >)delegate;
 

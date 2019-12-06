@@ -20,7 +20,6 @@
     self = [super init];
     if (self) {
         _yearDateFormatter = [[NSDateFormatter alloc] init];
-        _yearDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
         _yearDateFormatter.dateFormat = @"yyyy";
     }
     return self;
@@ -29,11 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    NSCalendar *calendar = [LBCalenderConfig shareInstanse].calendar;
     [LBCalenderConfig shareInstanse].selectionColor = [UIColor magentaColor];
     [LBCalenderConfig shareInstanse].eventIndicatorColor = [UIColor magentaColor];
     [LBCalenderConfig shareInstanse].selectionDates = @[[NSDate date]];
-    [LBCalenderConfig shareInstanse].eventsDates = @[[calendar dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:[NSDate date] options:0],[calendar dateByAddingUnit:NSCalendarUnitDay value:1 toDate:[NSDate date] options:0]];
+    [LBCalenderConfig shareInstanse].eventsDates = @[[[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:[NSDate date] options:0],[[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:[NSDate date] options:0]];
     
     LBYearCalendarView *yearCalendarView = [[LBYearCalendarView alloc] initWithFrame:self.view.bounds delegate:self];
     [self.view addSubview:yearCalendarView];

@@ -27,11 +27,10 @@
         self.backgroundColor = [UIColor clearColor];
         
         _monthFormatter = [[NSDateFormatter alloc] init];
-        _monthFormatter.timeZone = [NSTimeZone timeZoneWithName:@"GMT"];
-        _monthFormatter.dateFormat = @"MM月";
+        _monthFormatter.dateFormat = @"M月";
         
         _monthTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 0, CGRectGetWidth(frame)-10*2, 30)];
-        _monthTitleLabel.textColor = [UIColor blackColor];
+        _monthTitleLabel.textColor = [LBCalenderConfig shareInstanse].monthColor;
         _monthTitleLabel.font = [LBCalenderConfig shareInstanse].monthFont;
         [self addSubview:_monthTitleLabel];
         
@@ -44,13 +43,12 @@
         UICollectionView *oneMonthCollectionView = [[UICollectionView alloc] initWithFrame:monthCollectionViewFrame collectionViewLayout:layout];
         oneMonthCollectionView.backgroundColor = [UIColor clearColor];
         oneMonthCollectionView.showsHorizontalScrollIndicator = NO;
-        oneMonthCollectionView.pagingEnabled = YES;
+        oneMonthCollectionView.scrollEnabled = NO;
         oneMonthCollectionView.dataSource = self;
         oneMonthCollectionView.delegate = self;
         [oneMonthCollectionView registerClass:[LBYearCalendarDayCell class] forCellWithReuseIdentifier:NSStringFromClass(LBYearCalendarDayCell.self)];
         [self addSubview:oneMonthCollectionView];
         _oneMonthCollectionView = oneMonthCollectionView;
-        
     }
     return self;
 }
@@ -64,15 +62,19 @@
 {
     NSString *identifir = NSStringFromClass(LBYearCalendarDayCell.self);
     LBYearCalendarDayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifir forIndexPath:indexPath];
-    cell.date = nil;
     
-    NSUInteger weekDay = [[LBCalenderConfig shareInstanse].calendar component:NSCalendarUnitWeekday fromDate:_month];
+    
+    NSUInteger weekDay = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:_month];
     NSUInteger startIndex = weekDay-1;
     if (indexPath.row >= startIndex) {
-        NSDate *date = [[LBCalenderConfig shareInstanse].calendar dateByAddingUnit:NSCalendarUnitDay value:indexPath.row-startIndex toDate:_month options:0];
+        NSDate *date = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:indexPath.row-startIndex toDate:_month options:0];
         if ([[_monthFormatter stringFromDate:date] isEqualToString:[_monthFormatter stringFromDate:_month]]) {
             cell.date = date;
+        }else{//下个月的不显示
+            cell.date = nil;
         }
+    }else{//上个月的不显示
+        cell.date = nil;
     }
     return cell;
 }
@@ -80,6 +82,16 @@
 -(void)setMonth:(NSDate *)month{
     _month = month;
     _monthTitleLabel.text = [_monthFormatter stringFromDate:month];
+    
+    NSDateFormatter *yearMonthFormatter = [[NSDateFormatter alloc] init];
+    yearMonthFormatter.dateFormat = @"yyyyMM";
+    
+    if ([month compare:[yearMonthFormatter dateFromString:[yearMonthFormatter stringFromDate:[NSDate date]]]] == NSOrderedSame) {
+        _monthTitleLabel.textColor = [LBCalenderConfig shareInstanse].currentMonthColor;
+    }else{
+        _monthTitleLabel.textColor = [LBCalenderConfig shareInstanse].monthColor;
+    }
+    [_oneMonthCollectionView reloadData];
 }
 
 

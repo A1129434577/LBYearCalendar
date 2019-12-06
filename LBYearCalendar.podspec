@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "LBYearCalendar"
-  spec.version      = "1.0.1"
+  spec.version      = "1.0.2"
   spec.summary      = "超轻量级，超灵活的日历年视图"
   spec.description  = "超轻量级，超灵活的日历年视图"
   spec.homepage     = "https://github.com/A1129434577/LBYearCalendar"

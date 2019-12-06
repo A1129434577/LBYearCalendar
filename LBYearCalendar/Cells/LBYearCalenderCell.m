@@ -28,15 +28,25 @@
         layout.minimumInteritemSpacing = 0;
 
         UICollectionView *oneYearCollectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:layout];
-        oneYearCollectionView.backgroundColor = [UIColor whiteColor];
+        if (@available(iOS 13.0, *)) {
+            oneYearCollectionView.backgroundColor = [UIColor systemGroupedBackgroundColor];
+        } else {
+            oneYearCollectionView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        }
+        
         oneYearCollectionView.showsHorizontalScrollIndicator = NO;
-        oneYearCollectionView.pagingEnabled = YES;
+        oneYearCollectionView.scrollEnabled = NO;
         oneYearCollectionView.dataSource = self;
         [oneYearCollectionView registerClass:[LBYearCalenderMonthCell class] forCellWithReuseIdentifier:NSStringFromClass(LBYearCalenderMonthCell.self)];
         [self addSubview:oneYearCollectionView];
         _oneYearCollectionView = oneYearCollectionView;
     }
     return self;
+}
+
+-(void)setYear:(NSDate *)year{
+    _year = year;
+    [_oneYearCollectionView reloadData];
 }
 
 #pragma mark UICollectionViewDataSource
@@ -49,7 +59,7 @@
 {
     NSString *identifir = NSStringFromClass(LBYearCalenderMonthCell.self);
     LBYearCalenderMonthCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifir forIndexPath:indexPath];
-    cell.month = [[LBCalenderConfig shareInstanse].calendar dateByAddingUnit:NSCalendarUnitMonth value:indexPath.row toDate:_year options:0];
+    cell.month = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:indexPath.row toDate:_year options:0];
     return cell;
 }
 @end

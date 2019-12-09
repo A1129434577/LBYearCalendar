@@ -31,16 +31,15 @@
         _yearFormatter = [[NSDateFormatter alloc] init];
         _yearFormatter.dateFormat = @"yyyy";
         
-        _startYear = [NSDate dateWithTimeIntervalSince1970:0];
+        self.startYear = [NSDate dateWithTimeIntervalSince1970:0];
         NSDate *date = [_yearFormatter dateFromString:[_yearFormatter stringFromDate:[NSDate date]]];
-        _endYear = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitYear value:1500 toDate:date options:0];
+        self.endYear = [_calendar dateByAddingUnit:NSCalendarUnitYear value:1500 toDate:date options:0];
         
         _oneYearCollectionViews = [NSMutableArray array];
         for (int i = 0; i < 2; i ++) {
             LBOneYearCollectionView *oneYearCollectionView = [[LBOneYearCollectionView alloc] initWithFrame:self.bounds];
             [_oneYearCollectionViews addObject:oneYearCollectionView];
         }
-        
         
         
         self.showsHorizontalScrollIndicator = NO;
@@ -80,7 +79,7 @@
     currentPage = [_yearFormatter dateFromString:[_yearFormatter stringFromDate:currentPage]];
     if (![_currentPage isEqualToDate:currentPage]) {
         _currentPage = currentPage;
-        [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:[_calendar components:NSCalendarUnitYear fromDate:_startYear toDate:_currentPage options:0].year+1 inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
+        [self scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:[_calendar components:NSCalendarUnitYear fromDate:_startYear toDate:_currentPage options:0].year inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:NO];
     }
 }
 
@@ -94,7 +93,7 @@
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSUInteger years = [[NSCalendar currentCalendar] components:NSCalendarUnitYear fromDate:_startYear toDate:_endYear options:0].year+1;
+    NSUInteger years = [_calendar components:NSCalendarUnitYear fromDate:_startYear toDate:_endYear options:0].year+1;
     return years;
 }
 
@@ -117,7 +116,7 @@
     [cell addSubview:invisibleCollectionView];
 }
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    self.currentPage = [_calendar dateByAddingUnit:NSCalendarUnitYear value:collectionView.contentOffset.x/CGRectGetWidth(collectionView.bounds) toDate:_startYear options:0];
+    _currentPage = [_calendar dateByAddingUnit:NSCalendarUnitYear value:collectionView.contentOffset.x/CGRectGetWidth(collectionView.bounds) toDate:_startYear options:0];
 }
 
 //如果本类没实现的代理方法由lb_delegate实现

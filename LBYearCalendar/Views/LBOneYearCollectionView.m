@@ -11,6 +11,7 @@
 #import "LBCalenderConfig.h"
 
 @interface LBOneYearCollectionView()<UICollectionViewDataSource>
+@property (nonatomic,strong)NSCalendar *calendar;
 @end
 
 @implementation LBOneYearCollectionView
@@ -29,6 +30,7 @@
     self = [super initWithFrame:frame collectionViewLayout:layout];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        _calendar = [NSCalendar currentCalendar];
         
         self.scrollEnabled = NO;
         self.dataSource = self;
@@ -52,7 +54,7 @@
 {
     NSString *identifir = NSStringFromClass(LBYearCalenderMonthCell.self);
     LBYearCalenderMonthCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifir forIndexPath:indexPath];
-    cell.month = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitMonth value:indexPath.row toDate:_year options:0];
+    cell.month = [_calendar dateByAddingUnit:NSCalendarUnitMonth value:indexPath.row toDate:_year options:0];
     return cell;
 }
 @end

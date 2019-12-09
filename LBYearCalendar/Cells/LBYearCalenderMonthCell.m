@@ -15,6 +15,8 @@
 #define WEEK_LINES 6
 
 @interface LBYearCalenderMonthCell ()<UICollectionViewDataSource,UICollectionViewDelegate>
+@property (nonatomic,strong)NSCalendar *calendar;
+@property (nonatomic,assign)NSUInteger monthFirstDayWeekIndex;
 @property (nonatomic,strong)UILabel *monthTitleLabel;
 @property (nonatomic,strong)UICollectionView *oneMonthCollectionView;
 @property (nonatomic,strong)NSDateFormatter *monthFormatter;
@@ -25,6 +27,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         self.backgroundColor = [UIColor clearColor];
+        _calendar = [NSCalendar currentCalendar];
         
         _monthFormatter = [[NSDateFormatter alloc] init];
         _monthFormatter.dateFormat = @"M月";
@@ -63,10 +66,10 @@
     NSString *identifir = NSStringFromClass(LBYearCalendarDayCell.self);
     LBYearCalendarDayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifir forIndexPath:indexPath];
     
-    NSUInteger weekDay = [[NSCalendar currentCalendar] component:NSCalendarUnitWeekday fromDate:_month];
-    NSUInteger startIndex = weekDay-1;
+    NSUInteger startIndex = _monthFirstDayWeekIndex-1;
     if (indexPath.row >= startIndex) {
-        NSDate *date = [[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:indexPath.row-startIndex toDate:_month options:0];
+        
+        NSDate *date = [_calendar dateByAddingUnit:NSCalendarUnitDay value:indexPath.row-startIndex toDate:_month options:0];
         if ([[_monthFormatter stringFromDate:date] isEqualToString:[_monthFormatter stringFromDate:_month]]) {
             cell.date = date;
         }else{//下个月的不显示
@@ -80,6 +83,8 @@
 
 -(void)setMonth:(NSDate *)month{
     _month = month;
+    _monthFirstDayWeekIndex = [_calendar component:NSCalendarUnitWeekday fromDate:month];
+    
     _monthTitleLabel.text = [_monthFormatter stringFromDate:month];
     
     NSDateFormatter *yearMonthFormatter = [[NSDateFormatter alloc] init];

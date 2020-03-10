@@ -12,8 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LBYearCalendarDayCell : UICollectionViewCell
 @property (nonatomic,strong,nullable)NSDate *date;
-@property (nonatomic,strong,readonly)CAShapeLayer *selectionLayer;
-@property (nonatomic,strong,readonly)CAShapeLayer *eventIndicator;
+
 
 @end
 

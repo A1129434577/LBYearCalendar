@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         = "LBYearCalendar"
-  spec.version      = "1.0.4"
+  spec.version      = "1.1.0"
   spec.summary      = "超轻量级，超灵活的日历年视图"
   spec.description  = "超轻量级，超灵活的日历年视图"
   spec.homepage     = "https://github.com/A1129434577/LBYearCalendar"
@@ -11,4 +11,5 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => 'https://github.com/A1129434577/LBYearCalendar.git', :tag => spec.version.to_s }
   spec.source_files = "LBYearCalendar/**/*.{h,m}"
   spec.requires_arc = true
+  spec.dependency     "YYAsyncLayer"
 end

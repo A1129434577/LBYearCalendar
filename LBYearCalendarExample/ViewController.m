@@ -19,12 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [LBCalenderConfig shareInstanse].selectionColor = [UIColor magentaColor];
+    [LBCalenderConfig shareInstanse].selectionFillColor = [UIColor magentaColor];
     [LBCalenderConfig shareInstanse].eventIndicatorColor = [UIColor magentaColor];
     [LBCalenderConfig shareInstanse].selectionDates = @[[NSDate date]];
     [LBCalenderConfig shareInstanse].eventsDates = @[[[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:-1 toDate:[NSDate date] options:0],[[NSCalendar currentCalendar] dateByAddingUnit:NSCalendarUnitDay value:1 toDate:[NSDate date] options:0]];
     
-    LBYearCalendarView *yearCalendarView = [[LBYearCalendarView alloc] initWithFrame:self.view.bounds];
+    LBYearCalendarView *yearCalendarView = [[LBYearCalendarView alloc] initWithFrame:CGRectMake(0, 80, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-80)];
     yearCalendarView.lb_delegate = self;
     yearCalendarView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:yearCalendarView];

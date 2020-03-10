@@ -19,10 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic,strong,nullable)UIFont *dayFont;
 
 @property (nonatomic,strong,nullable)UIColor *monthColor;
-@property (nonatomic,strong,nullable)UIColor *currentMonthColor;
+@property (nonatomic,strong,nullable)UIColor *selectionMonthColor;
 @property (nonatomic,strong,nullable)UIColor *dayColor;
 @property (nonatomic,strong,nullable)UIColor *daySelectionColor;
-@property (nonatomic,strong,nullable)UIColor *selectionColor;
+@property (nonatomic,strong,nullable)UIColor *selectionFillColor;
 @property (nonatomic,strong,nullable)UIColor *eventIndicatorColor;
 
 +(LBCalenderConfig *)shareInstanse;

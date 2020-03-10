@@ -1,0 +1,16 @@
+PODS:
+  - YYAsyncLayer (1.0)
+
+DEPENDENCIES:
+  - YYAsyncLayer
+
+SPEC REPOS:
+  trunk:
+    - YYAsyncLayer
+
+SPEC CHECKSUMS:
+  YYAsyncLayer: df6b01ebc695c5f6b4c15dd5c23fa3e081eb25c0
+
+PODFILE CHECKSUM: cd7c7cea1a90df99443f9bea3c5194f167ebc890
+
+COCOAPODS: 1.9.0.beta.2

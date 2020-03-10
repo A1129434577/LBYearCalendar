@@ -24,10 +24,10 @@
         shareData.dayFont = [UIFont systemFontOfSize:10];
         
         shareData.monthColor = [UIColor blackColor];
-        shareData.currentMonthColor = [UIColor magentaColor];
+        shareData.selectionMonthColor = [UIColor magentaColor];
         shareData.dayColor = [UIColor blackColor];
         shareData.daySelectionColor = [UIColor whiteColor];
-        shareData.selectionColor = [UIColor magentaColor];
+        shareData.selectionFillColor = [UIColor magentaColor];
         shareData.eventIndicatorColor = [UIColor magentaColor];
     });
     return shareData;

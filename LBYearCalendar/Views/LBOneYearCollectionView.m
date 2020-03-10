@@ -43,7 +43,6 @@
     _year = year;
     [self reloadData];
 }
-
 #pragma mark UICollectionViewDataSource
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {

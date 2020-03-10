@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1DC56585BB474576C464EC1E /* Pods_LBYearCalendarExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92EEE6D067F7680A44A71C97 /* Pods_LBYearCalendarExample.framework */; };
 		40923FA2239101A7006769D6 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FA1239101A7006769D6 /* ViewController.m */; };
 		40923FA7239101A9006769D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40923FA6239101A9006769D6 /* Assets.xcassets */; };
 		40923FAA239101A9006769D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40923FA8239101A9006769D6 /* LaunchScreen.storyboard */; };
@@ -18,6 +19,10 @@
 		40923FC72391042D006769D6 /* LBYearCalenderMonthCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FC02391042D006769D6 /* LBYearCalenderMonthCell.m */; };
 		40923FC82391042D006769D6 /* LBYearCalendarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FC12391042D006769D6 /* LBYearCalendarView.m */; };
 		40923FC92391042D006769D6 /* LBCalenderConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 40923FC32391042D006769D6 /* LBCalenderConfig.m */; };
+		40ABCC2024173A6F00D746F6 /* LBCalendarTextLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40ABCC1F24173A6F00D746F6 /* LBCalendarTextLayer.m */; };
+		40ABCC29241768FF00D746F6 /* LBDaySelectionLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40ABCC28241768FF00D746F6 /* LBDaySelectionLayer.m */; };
+		40ABCC2C24176FC000D746F6 /* LBEventIndicatorLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 40ABCC2B24176FC000D746F6 /* LBEventIndicatorLayer.m */; };
+		40ABCC2F24177DBA00D746F6 /* LBYearCalenderYearCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 40ABCC2E24177DBA00D746F6 /* LBYearCalenderYearCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +46,17 @@
 		40923FC12391042D006769D6 /* LBYearCalendarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBYearCalendarView.m; sourceTree = "<group>"; };
 		40923FC32391042D006769D6 /* LBCalenderConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LBCalenderConfig.m; sourceTree = "<group>"; };
 		40923FC42391042D006769D6 /* LBCalenderConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LBCalenderConfig.h; sourceTree = "<group>"; };
+		40ABCC1E24173A6F00D746F6 /* LBCalendarTextLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBCalendarTextLayer.h; sourceTree = "<group>"; };
+		40ABCC1F24173A6F00D746F6 /* LBCalendarTextLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBCalendarTextLayer.m; sourceTree = "<group>"; };
+		40ABCC27241768FF00D746F6 /* LBDaySelectionLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBDaySelectionLayer.h; sourceTree = "<group>"; };
+		40ABCC28241768FF00D746F6 /* LBDaySelectionLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBDaySelectionLayer.m; sourceTree = "<group>"; };
+		40ABCC2A24176FC000D746F6 /* LBEventIndicatorLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBEventIndicatorLayer.h; sourceTree = "<group>"; };
+		40ABCC2B24176FC000D746F6 /* LBEventIndicatorLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBEventIndicatorLayer.m; sourceTree = "<group>"; };
+		40ABCC2D24177DBA00D746F6 /* LBYearCalenderYearCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LBYearCalenderYearCell.h; sourceTree = "<group>"; };
+		40ABCC2E24177DBA00D746F6 /* LBYearCalenderYearCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LBYearCalenderYearCell.m; sourceTree = "<group>"; };
+		7E589EB89A74C7708D87415C /* Pods-LBYearCalendarExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LBYearCalendarExample.debug.xcconfig"; path = "Target Support Files/Pods-LBYearCalendarExample/Pods-LBYearCalendarExample.debug.xcconfig"; sourceTree = "<group>"; };
+		92EEE6D067F7680A44A71C97 /* Pods_LBYearCalendarExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LBYearCalendarExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3C5D1EC8190B645C69F34A6 /* Pods-LBYearCalendarExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LBYearCalendarExample.release.xcconfig"; path = "Target Support Files/Pods-LBYearCalendarExample/Pods-LBYearCalendarExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,6 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1DC56585BB474576C464EC1E /* Pods_LBYearCalendarExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +86,8 @@
 				40923FB6239103E9006769D6 /* LBYearCalendar.podspec */,
 				40923F99239101A7006769D6 /* LBYearCalendarExample */,
 				40923F98239101A7006769D6 /* Products */,
+				A5017C6B025C8E5A7A46669E /* Pods */,
+				BE07C53C2DC4CC3EA109F810 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -99,6 +118,7 @@
 		40923FB82391042D006769D6 /* LBYearCalendar */ = {
 			isa = PBXGroup;
 			children = (
+				40ABCC1D24173A4200D746F6 /* Layers */,
 				40923FB92391042D006769D6 /* LBYearCalendarView.h */,
 				40923FC12391042D006769D6 /* LBYearCalendarView.m */,
 				40923FC22391042D006769D6 /* Model */,
@@ -115,6 +135,8 @@
 				40923FC02391042D006769D6 /* LBYearCalenderMonthCell.m */,
 				40923FBE2391042D006769D6 /* LBYearCalendarDayCell.h */,
 				40923FBB2391042D006769D6 /* LBYearCalendarDayCell.m */,
+				40ABCC2D24177DBA00D746F6 /* LBYearCalenderYearCell.h */,
+				40ABCC2E24177DBA00D746F6 /* LBYearCalenderYearCell.m */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -128,6 +150,36 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		40ABCC1D24173A4200D746F6 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				40ABCC1E24173A6F00D746F6 /* LBCalendarTextLayer.h */,
+				40ABCC1F24173A6F00D746F6 /* LBCalendarTextLayer.m */,
+				40ABCC27241768FF00D746F6 /* LBDaySelectionLayer.h */,
+				40ABCC28241768FF00D746F6 /* LBDaySelectionLayer.m */,
+				40ABCC2A24176FC000D746F6 /* LBEventIndicatorLayer.h */,
+				40ABCC2B24176FC000D746F6 /* LBEventIndicatorLayer.m */,
+			);
+			path = Layers;
+			sourceTree = "<group>";
+		};
+		A5017C6B025C8E5A7A46669E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7E589EB89A74C7708D87415C /* Pods-LBYearCalendarExample.debug.xcconfig */,
+				A3C5D1EC8190B645C69F34A6 /* Pods-LBYearCalendarExample.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BE07C53C2DC4CC3EA109F810 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				92EEE6D067F7680A44A71C97 /* Pods_LBYearCalendarExample.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +187,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40923FB0239101A9006769D6 /* Build configuration list for PBXNativeTarget "LBYearCalendarExample" */;
 			buildPhases = (
+				7F6B9CE8F82DF7F5FF060008 /* [CP] Check Pods Manifest.lock */,
 				40923F93239101A7006769D6 /* Sources */,
 				40923F94239101A7006769D6 /* Frameworks */,
 				40923F95239101A7006769D6 /* Resources */,
+				132024F1BB06A950CC562D5F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -193,6 +247,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		132024F1BB06A950CC562D5F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LBYearCalendarExample/Pods-LBYearCalendarExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LBYearCalendarExample/Pods-LBYearCalendarExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LBYearCalendarExample/Pods-LBYearCalendarExample-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7F6B9CE8F82DF7F5FF060008 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LBYearCalendarExample-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		40923F93239101A7006769D6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -203,7 +299,11 @@
 				40923FC62391042D006769D6 /* LBOneYearCollectionView.m in Sources */,
 				40923FC52391042D006769D6 /* LBYearCalendarDayCell.m in Sources */,
 				40923FAD239101A9006769D6 /* main.m in Sources */,
+				40ABCC2F24177DBA00D746F6 /* LBYearCalenderYearCell.m in Sources */,
 				40923FB5239103E1006769D6 /* AppDelegate.m in Sources */,
+				40ABCC2024173A6F00D746F6 /* LBCalendarTextLayer.m in Sources */,
+				40ABCC2C24176FC000D746F6 /* LBEventIndicatorLayer.m in Sources */,
+				40ABCC29241768FF00D746F6 /* LBDaySelectionLayer.m in Sources */,
 				40923FC82391042D006769D6 /* LBYearCalendarView.m in Sources */,
 				40923FC92391042D006769D6 /* LBCalenderConfig.m in Sources */,
 			);
@@ -335,6 +435,7 @@
 		};
 		40923FB1239101A9006769D6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7E589EB89A74C7708D87415C /* Pods-LBYearCalendarExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -353,6 +454,7 @@
 		};
 		40923FB2239101A9006769D6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A3C5D1EC8190B645C69F34A6 /* Pods-LBYearCalendarExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -111,9 +111,10 @@
     [invisibleCollectionViews removeObject:[collectionView.visibleCells.firstObject viewWithTag:1000]];
     
     LBOneYearCollectionView *invisibleCollectionView = invisibleCollectionViews.firstObject;
+    [cell addSubview:invisibleCollectionView];
      invisibleCollectionView.year = [_calendar dateByAddingUnit:NSCalendarUnitYear value:indexPath.row toDate:_startYear options:0];
     invisibleCollectionView.tag = 1000;
-    [cell addSubview:invisibleCollectionView];
+    
 }
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
     _currentPage = [_calendar dateByAddingUnit:NSCalendarUnitYear value:collectionView.contentOffset.x/CGRectGetWidth(collectionView.bounds) toDate:_startYear options:0];

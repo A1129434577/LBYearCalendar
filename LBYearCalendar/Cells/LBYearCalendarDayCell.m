@@ -7,11 +7,16 @@
 //
 
 #import "LBYearCalendarDayCell.h"
+#import "LBCalendarTextLayer.h"
+#import "LBDaySelectionLayer.h"
+#import "LBEventIndicatorLayer.h"
 #import "LBCalenderConfig.h"
 
 @interface LBYearCalendarDayCell ()
 @property (nonatomic,strong)NSCalendar *calendar;
-@property (nonatomic,strong)CATextLayer *dayTitleLayer;
+@property (nonatomic,strong)LBCalendarTextLayer *dayTitleLayer;
+@property (nonatomic,strong)LBDaySelectionLayer *selectionLayer;
+@property (nonatomic,strong)LBEventIndicatorLayer *eventIndicator;
 @property (nonatomic,strong)NSDateFormatter *dayFromatter;
 @end
 
@@ -24,27 +29,28 @@
         _dayFromatter = [[NSDateFormatter alloc] init];
         _dayFromatter.dateFormat = @"d";
         
-        _selectionLayer = [[CAShapeLayer alloc] init];
-        _selectionLayer.hidden = YES;
-        _selectionLayer.frame = CGRectMake((CGRectGetWidth(frame)-(CGRectGetWidth(frame)-2.5))/2, 0, CGRectGetWidth(frame)-2.5, CGRectGetWidth(frame)-2.5);
-        _selectionLayer.fillColor = [LBCalenderConfig shareInstanse].selectionColor.CGColor;
-        _selectionLayer.path = [UIBezierPath bezierPathWithOvalInRect:_selectionLayer.bounds].CGPath;
+        UILabel *fontLabel = [[UILabel alloc] init];
+        fontLabel.font = [LBCalenderConfig shareInstanse].dayFont;
+        fontLabel.text = @"00";
+        [fontLabel sizeToFit];
+        
+        CGFloat side = MAX(CGRectGetHeight(fontLabel.bounds), CGRectGetWidth(fontLabel.bounds));
+        
+        _selectionLayer = [[LBDaySelectionLayer alloc] init];
+        _selectionLayer.frame = CGRectMake((CGRectGetWidth(frame)-side)/2, (CGRectGetHeight(frame)-side)/2, side, side);
+        _selectionLayer.fillColor = [LBCalenderConfig shareInstanse].selectionFillColor;
         [self.layer addSublayer:_selectionLayer];
         
-        _dayTitleLayer = [[CATextLayer alloc] init];
-        _dayTitleLayer.contentsScale = 2;
-        _dayTitleLayer.foregroundColor = [LBCalenderConfig shareInstanse].dayColor.CGColor;
+        _dayTitleLayer = [[LBCalendarTextLayer alloc] init];
         _dayTitleLayer.frame = self.bounds;
-        _dayTitleLayer.alignmentMode = kCAAlignmentCenter;
-        _dayTitleLayer.font = (__bridge CFTypeRef)[LBCalenderConfig shareInstanse].dayFont;
-        _dayTitleLayer.fontSize = [LBCalenderConfig shareInstanse].dayFont.pointSize;
+        _dayTitleLayer.alignment = NSTextAlignmentCenter;
+        _dayTitleLayer.textColor = [LBCalenderConfig shareInstanse].dayColor;
+        _dayTitleLayer.font = [LBCalenderConfig shareInstanse].dayFont;
         [self.layer addSublayer:_dayTitleLayer];
         
-        _eventIndicator = [[CAShapeLayer alloc] init];
-        _eventIndicator.hidden = YES;
+        _eventIndicator = [[LBEventIndicatorLayer alloc] init];
         _eventIndicator.frame = CGRectMake((CGRectGetWidth(frame)-CGRectGetWidth(_selectionLayer.frame)/2)/2, CGRectGetMaxY(_selectionLayer.frame)+2.5, 6, 1);
-        _eventIndicator.fillColor = [LBCalenderConfig shareInstanse].eventIndicatorColor.CGColor;
-        _eventIndicator.path = [UIBezierPath bezierPathWithRect:_eventIndicator.bounds].CGPath;
+        _eventIndicator.fillColor = [LBCalenderConfig shareInstanse].eventIndicatorColor;
         [self.layer addSublayer:_eventIndicator];
         
         [[LBCalenderConfig shareInstanse] addObserver:self forKeyPath:NSStringFromSelector(@selector(selectionDates)) options:NSKeyValueObservingOptionNew context:nil];
@@ -57,7 +63,7 @@
         _date = date;
         if (date) {
             _dayTitleLayer.hidden = NO;
-            _dayTitleLayer.string = [_dayFromatter stringFromDate:date];
+            _dayTitleLayer.text = [_dayFromatter stringFromDate:date];
             
             [self observeValueForKeyPath:NSStringFromSelector(@selector(selectionDates)) ofObject:[LBCalenderConfig shareInstanse] change:nil context:nil];
             [self observeValueForKeyPath:NSStringFromSelector(@selector(eventsDates)) ofObject:[LBCalenderConfig shareInstanse] change:nil context:nil];
@@ -72,13 +78,13 @@
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     if ([keyPath isEqualToString:NSStringFromSelector(@selector(selectionDates))]) {
         _selectionLayer.hidden = YES;
-        _dayTitleLayer.foregroundColor = [LBCalenderConfig shareInstanse].dayColor.CGColor;
+        _dayTitleLayer.textColor = [LBCalenderConfig shareInstanse].dayColor;
         
         __weak typeof(self) weakSelf = self;
         [[LBCalenderConfig shareInstanse].selectionDates enumerateObjectsUsingBlock:^(NSDate * _Nonnull selectionDate, NSUInteger idx, BOOL * _Nonnull stop) {
             if ([selectionDate isEqualToDate:weakSelf.date]) {
                 weakSelf.selectionLayer.hidden = NO;
-                weakSelf.dayTitleLayer.foregroundColor = [LBCalenderConfig shareInstanse].daySelectionColor.CGColor;
+                weakSelf.dayTitleLayer.textColor = [LBCalenderConfig shareInstanse].daySelectionColor;
                 *stop = YES;
             }
         }];
